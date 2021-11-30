@@ -25,24 +25,22 @@
 	public function config_page(){ ?>
 		<div class="wrap">
 			<div id="app">
-				<h5 class="ml-2">Weather Widgets
-					<button class="float-right btn">Novo <i class="fa fa-plus"></i></button>
-				</h5>
+				<h5 class="ml-2">Weather Widgets </h5>
 				<table class="table">
 					<thead>
 						<tr>
-							<th>Name			</th>
 							<th>Shortcode	</th>
-							<th>Type			</th>
-							<th>Demo			</th>
+							<th>City			</th>
+							<th>Unit			</th>
+							<th>Retorno		</th>
 						</tr>
 					</thead>
 					<tbody>
 						<tr>
-							<td>My Widget</td>
-							<td>[WeatherCP city="{city}"]</td>
-							<td>Temperature</td>
-							<td><?php echo do_shortcode('[weatherCP-temp]'); ?></td>
+							<td>[WeatherCP city="{city}" unit="{unit}"]</td>
+							<td>aracaju</td>
+							<td>temp	</td>
+							<td><?php echo do_shortcode('[weatherCP]'); ?></td>
 						</tr>
 					</tbody>
 				</table>
@@ -61,7 +59,7 @@
 		</div>
 		<style scoped>
 			#app {
-				font-size: 13px;
+				font-size: 12px;
 			}
 			.btn.float-right {
 				padding: 5px 14px;

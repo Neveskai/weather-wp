@@ -1,6 +1,6 @@
 <?php class WeatherCP {
 	public function __construct(){
-		add_shortcode('weatherCP-temp', array($this, 'temp_widget'));
+		add_shortcode('weatherCP', array($this, 'widget'));
 	}
 	
 	function read_file($city){
@@ -10,10 +10,15 @@
 		return $resp;
 	}
 	
-	function temp_widget($city) {
-		$city = isset($attr['city']) ? $attr['city'] : 'aracaju';
+	function widget($args) {
+		$city = isset($args['city']) ? $args['city'] : 'aracaju';
+		$unit = isset($args['unit']) ? $args['unit'] : 'temp';
 		$json = json_decode($this->read_file($city), true);
-		return round($json['main']['temp']);
+		
+		switch($unit){
+			case 'temp': return round($json['main']['temp']); break;
+		}
+		return 'unit undefined';
 	}
 }
 $WeatherCP = new WeatherCP();
