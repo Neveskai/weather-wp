@@ -1,6 +1,6 @@
 <?php
 global $weather_db_version;
-$weather_db_version = '1.0.1';
+$weather_db_version = '1.0.2';
 
 function weather_db_install() {
 	global $wpdb;
@@ -18,6 +18,7 @@ function weather_db_install() {
 			wpCities_idCity INTEGER UNSIGNED NOT NULL,
 			temp FLOAT NULL,
 			description VARCHAR(50) NULL,
+			date TIMESTAMP NULL,
 			PRIMARY KEY(idWeather),
 			INDEX Weather_FKIndex1(wpCities_idCity)
 		);
@@ -26,11 +27,28 @@ function weather_db_install() {
 	require_once(ABSPATH .'/wp-admin/includes/upgrade.php');
 	dbDelta($sql);
 	add_option('weather_db_version', $weather_db_version);
+	add_weather_initial_data();
+}
+
+function add_weather_initial_data(){
+	global $wpdb;
+	
+	$city = array(
+		idCity => 1,
+		Name => 'aracaju',
+	);
+	$weather = array(
+		wpCities_idCity => 1,
+		description => 'clear sky',
+		idWeather => 1,
+		temp => 27
+	);
+	$wpdb->insert('wpCities', $city);
+	$wpdb->insert('wpWeather', $weather);
 }
 
 function weather_db_check() {
    global $weather_db_version;
-   if (get_site_option('weather_db_version') != $weather_db_version) { weather_db_install(); }
+   if (get_site_option('weather_db_version') != $weather_db_version) weather_db_install();
 }
-
 ?>

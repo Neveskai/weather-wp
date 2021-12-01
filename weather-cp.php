@@ -10,5 +10,7 @@
 
 define('whs_plugin_bname', plugin_basename(__FILE__));
 include 'config-database.php';
-include 'src/WeatherCP.php';
 include 'config-page.php';
+include 'src/WeatherCP.php';
+
+register_activation_hook(__FILE__, 'weather_db_check');

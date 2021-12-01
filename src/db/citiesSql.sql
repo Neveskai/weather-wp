@@ -9,6 +9,7 @@ CREATE TABLE wpWeather (
   wpCities_idCity INTEGER UNSIGNED NOT NULL,
   temp FLOAT NULL,
   description VARCHAR(50) NULL,
+  date TIMESTAMP NULL,
   PRIMARY KEY(idWeather),
   INDEX Weather_FKIndex1(wpCities_idCity)
 );

@@ -1,35 +1,36 @@
 <?php class WeatherCP {
 	protected $wpdb;
 	
-	public function __construct($PDO = null){
+	public function __construct(){
 		global $wpdb; 
 		$this->wpdb =& $wpdb;
 		add_shortcode('weatherCP', array($this, 'widget'));
 	}
 	
-	//$wpdb->get_results($query);
 	function get_city($city){
-		$weather = $this->wpdb->get_row("
+		$wpdb = $this->wpdb;
+		$arr = $wpdb->get_row("
 			SELECT
 				W.temp as temp,
 				W.description as description,
-				C.Name as name
+				C.Name as name,
+				EXTRACT(HOUR FROM W.date) as hour
 			FROM wpCities AS C
 			JOIN wpWeather AS W ON W.wpCities_idCity = C.idCity 
 			WHERE 
 				C.Name = '$city'
-		", ARRAY_A);
-		return $weather;
+			ORDER BY W.idWeather DESC 
+			LIMIT 1
+		", ARRAY_A );
+		return $arr;
 	}
 	
-	function get_star(){
-		$hour = intval(date('H'));
-		if($hour >= 6 && $hour < 17) return 'sun';
+	function get_star($hour){
+		if($hour >= 6 && $hour < 18) return 'sun';
 		return 'moon';
 	}
 	
-	function get_icon($desc){
-		$star = $this->get_star();
+	function get_icon($desc, $star){
 		switch($desc){
 			case 'clear sky' 		: $icon = "fa-{$star}"; 			break;
 			case 'few clouds'		: $icon = "fa-cloud-{$star}"; 		break;
@@ -43,23 +44,16 @@
 		}
 		return $icon;
 	}
-	
-	function get_data($unit, $weather){
-		switch($unit){
-			case 'temp'	: $data = round($weather['temp']); break;
-			default 	: $data = 'unit undefined'; break;
-		}
-		return $data;
-	}
-	
+		
 	function widget($args) {
 		$city = isset($args['city']) ? $args['city'] : 'aracaju';
 		$unit = isset($args['unit']) ? $args['unit'] : 'temp';
-		$weather = json_decode($this->get_city($city), true);
+		$arr  = $this->get_city($city);
 		
-		$icon = $this->get_icon($weather['description']);
-		$data = $this->get_data($unit, $weather);
-		return $this->layout($icon, $data);
+		return $this->layout(
+			$this->get_icon($arr['description'], $this->get_star($json['hour'])), 
+			$arr[$unit]
+		);
 	}
 	
 	function layout($icon, $data) {
