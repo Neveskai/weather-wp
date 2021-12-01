@@ -5,8 +5,8 @@
 	
 	foreach($cities as $city) {
 		$args = array(
-			units => 'metric',
 			appid => $key,
+			units => 'metric',
 			q => $city
 		);
 		$opts = array(
@@ -18,5 +18,7 @@
 		$resp = curl_exec($ch);		curl_close($ch);
 		$file = fopen("../cities/{$city}.json", "w");
 		fwrite($file, $resp);
+		fclose($file);
+		echo $resp;
 	}
 ?>

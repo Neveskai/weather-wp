@@ -44,17 +44,6 @@
 						</tr>
 					</tbody>
 				</table>
-				<div style="font-size: 200% !important;">
-					<i class="fa fa-sun"></i>
-					<i class="fa fa-moon"></i>
-					<i class="fa fa-cloud"></i>
-					<i class="fa fa-cloud-moon"></i>
-					<i class="fa fa-cloud-showers-heavy"></i>
-					<i class="fa fa-cloud-sun"></i>
-					<i class="fa fa-cloud-rain"></i>
-					<i class="fa fa-cloud-moon-rain"></i>
-					<i class="fa fa-cloud-sun-rain"></i>
-				</div>
 			</div>
 		</div>
 		<style scoped>
