@@ -16,7 +16,7 @@
 		
 		$ch = curl_init(); 			curl_setopt_array($ch, $opts);
 		$resp = curl_exec($ch);		curl_close($ch);
-		$file = fopen("../cities/{$city}.json", "w");
+		$file = fopen("{$city}.json", "w");
 		fwrite($file, $resp);
 		fclose($file);
 		echo $resp;

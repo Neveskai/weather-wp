@@ -2,7 +2,7 @@
 WeatherCP Module for WordPress Private Project
 
 ## Atualização dos Dados ##
-Aponte um cronjob pro arquivo no diretorio /cities/cron.php e adicione cidades ao array "$cities"
+Aponte um cronjob pro arquivo no diretorio /src/jobs/cron.php
 
 ## Shortcode ##
 [WeatherCP city="{city}" unit="{unit}"]
