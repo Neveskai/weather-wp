@@ -88,7 +88,7 @@
 			'wpCities_idCity' => $cityID,
 			'description' => $json['weather'][0]['description'],
 			'temp' => $json['main']['temp'],
-			'date' => gmdate('Y-m-d H:i:s', $json['dt'])
+			'date' => date('Y-m-d H:i:s')
 		));
 	}
 	
