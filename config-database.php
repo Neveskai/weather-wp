@@ -1,6 +1,6 @@
 <?php
 global $weather_db_version;
-$weather_db_version = '1.0.2';
+$weather_db_version = '1.0.3';
 
 function weather_db_install() {
 	global $wpdb;
@@ -10,6 +10,7 @@ function weather_db_install() {
 		CREATE TABLE wpCities (
 			idCity INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
 			Name VARCHAR(50) NULL,
+			active TINYINT(1) UNSIGNED NULL,
 			PRIMARY KEY(idCity)
 		);
 
