@@ -37,7 +37,7 @@
 					</thead>
 					<tbody>
 						<tr>
-							<td>[WeatherCP city="{city}" unit="{unit}"]</td>
+							<td>[weatherCP city="{city}" unit="{unit}"]</td>
 							<td>aracaju</td>
 							<td>temp	</td>
 							<td><?php echo do_shortcode('[weatherCP]'); ?></td>

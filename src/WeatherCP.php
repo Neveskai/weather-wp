@@ -7,6 +7,7 @@
 	}
 	
 	function _main($args) {
+		date_default_timezone_set('America/Sao_Paulo');
 		$city = isset($args['city']) ? $args['city'] : 'aracaju';
 		$unit = isset($args['unit']) ? $args['unit'] : 'temp';
 		$arr  = $this->getCity($city);
@@ -83,6 +84,7 @@
 	}
 	
 	function insertCityWeather($json, $cityID){
+		date_default_timezone_set('America/Sao_Paulo');
 		$this->wpdb->insert('wpWeather', array(
 			'wpCities_idCity' => $cityID,
 			'description' => $json['weather'][0]['description'],
