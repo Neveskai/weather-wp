@@ -1,10 +1,9 @@
-<?php class WeatherCP {
+<?php class Weather_CP {
 	protected $wpdb;
 	
 	public function __construct(){
 		global $wpdb; 
 		$this->wpdb =& $wpdb;
-		add_shortcode('weatherCP', array($this, '_main'));
 	}
 	
 	function _main($args) {
@@ -118,5 +117,5 @@
 	}
 	
 }
-$WeatherCP = new WeatherCP();
+$WeatherCP = new Weather_CP();
 ?>
