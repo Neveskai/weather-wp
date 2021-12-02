@@ -23,6 +23,7 @@
 				$this->insertCityWeather($json, $arr['id']);
 				$arr['description'] = $json['weather'][0]['description'];
 				$arr['temp'] = $json['main']['temp'];
+				$arr['time'] = date('Y-m-d H:i:s');
 			}
 		}
 		return $this->widget(
@@ -111,7 +112,7 @@
 		return "
 			<div class='weather-widget'>
 				<i class='fa {$icon}'></i>
-				<span>{$data}</span>
+				<span>{$data}<sup>o</sup></span>
 			</div>
 		";
 	}
