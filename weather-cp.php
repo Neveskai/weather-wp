@@ -14,4 +14,5 @@ include 'config-database.php';
 include 'config-page.php';
 include 'src/WeatherCP.php';
 
+add_shortcode('weatherCP', array(new Weather_CP(), '_main'));
 register_activation_hook(__FILE__, 'weather_db_check');
