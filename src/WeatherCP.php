@@ -110,6 +110,7 @@
 	}
 	
 	function widget($icon, $data) {
+		$data = round($data);
 		return "
 			<div class='weather-widget'>
 				<i class='fa {$icon}'></i>
