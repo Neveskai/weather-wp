@@ -23,7 +23,7 @@
 				$this->insertCityWeather($json, $arr['id']);
 				$arr['description'] = $json['weather'][0]['description'];
 				$arr['temp'] = $json['main']['temp'];
-				$arr['time'] = date('Y-m-d H:i:s');
+				$arr['hour'] = date('H');
 			}
 		}
 		return $this->widget(
